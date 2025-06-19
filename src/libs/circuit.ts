@@ -41,3 +41,9 @@ export const verifyProof = async (
   const vKey = await vkRes.json();
   return await groth16.verify(vKey, publicSignals, proof);
 }
+
+export const exportSolidityCallData = async ({ proof, publicSignals }: OutPut): Promise<any> => {
+  const calldata = await groth16.exportSolidityCallData(proof, publicSignals);
+
+  return JSON.parse(`[${calldata}]`);
+}
